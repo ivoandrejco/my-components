@@ -141,7 +141,7 @@ export class RapForm extends React.Component<IFormProps,IFormState>{
       this.setState({submitting:true})
       const result = await this.props.onSubmit(this.state.values)
       this.setState({
-        submitted: true,
+        submitted: false,
         submitting: false
       })
       return {success:true}
