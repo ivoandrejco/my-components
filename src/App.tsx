@@ -1,26 +1,41 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {Component} from 'react';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import Header from './header'
+
+
+const patients = ['ivo','ivinek','marvin','martina','anika','sofinka','etienne']
+
+interface IState {
+  searchTerm: string;
+}
+
+class App extends Component<{},IState>{
+  public constructor(props:{}) {
+    super(props)
+    this.state = {
+      searchTerm: ''
+    }
+  }
+
+  public render() {
+    return (
+      <Header 
+        handleSearchChange={this.handleSearchChange}
+        handleSearchSubmit={this.handleSearchSubmit}
+      />
+    )
+  }
+
+  private handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    console.log("app : " + e.target.value)
+    //patients.map( p => return;)
+    this.setState({searchTerm:e.target.value})
+  }
+
+  private handleSearchSubmit = (e:React.FormEvent) => {
+    console.log("keyboard event ... " + this.state.searchTerm)
+    e.preventDefault()
+  } 
 }
 
 export default App;

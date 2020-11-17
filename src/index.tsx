@@ -1,14 +1,33 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import {Provider} from 'react-redux';
+import {Store} from 'redux';
 
+import './index.css';
+import Routes from './routes';
+import reportWebVitals from './reportWebVitals';
+import 'bootstrap/dist/css/bootstrap.css';
+
+import configureStore from './Store';
+import {IApplicationState} from './Store';
+
+interface IProps {
+  store: Store<IApplicationState>;
+}
+
+const Root: React.FC<IProps> = props => {
+  return (
+    <Provider store={props.store}>
+      <Routes />
+    </Provider>
+  )
+}
+// Put any other imports below so that CSS from your
+// components takes precedence over default styles.
+const store = configureStore()
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
+  <Root store={store} />,
+  document.getElementById('root') as HTMLElement
 );
 
 // If you want to start measuring performance in your app, pass a function
