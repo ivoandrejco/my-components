@@ -50,10 +50,7 @@ export default class CreatePatient extends React.Component<cpProps> {
       console.log("values["+key+"] = ")
       //p[key] = values[key]
     })
-   // values.forEach( (element:string) => {
-   //   p[element] = values[element]
-   // });
-    //create IPatient object and then pass to the function
+
     p.id = uuidv4()
     this.props.addPatient(p)
     return {
